@@ -47,7 +47,7 @@ function AstarAlgo(startNode, endNode) {
 
                 if (newPath) {
                     neighbour.h = heruistic(neighbour, endNode);
-                    neighbour.f = neighbour.g + neighbour.f;
+                    neighbour.f = neighbour.g + neighbour.h;
                     neighbour.previous = current;
                 }
 

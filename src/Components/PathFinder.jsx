@@ -3,8 +3,8 @@ import './PathFinder.css';
 import Node from './Node';
 import AstarAlgo from '../Algorithm/AstarAlgo';
 
-const cols = 25;
-const rows = 15;
+const cols = 14;
+const rows = 14;
 
 const NODE_START_ROW = 0;
 const NODE_END_ROW = rows - 1;
@@ -44,7 +44,7 @@ export default function PathFinder() {
         let path = AstarAlgo(startNode, endNode);
         setPath(path.path);
         setVisitedNode(path.visitedNode);
-
+        console.log(path.visitedNode);
     }
 
 
@@ -80,6 +80,10 @@ export default function PathFinder() {
         this.h = 0;
         this.neighbours = [];
         this.previous = undefined;
+        this.isWall = false;
+        if (Math.random(1) < 0.2){
+            this.isWall = true
+        }
         this.addNeighbours = function (grid) {
             let i = this.x
             let j = this.y;
@@ -99,7 +103,7 @@ export default function PathFinder() {
                         <div key={rowIndex} className='rowWrapper'>
                             {
                                 row.map((col, colIndex) => {
-                                    const { isStart, isEnd } = col;
+                                    const { isStart, isEnd , isWall} = col;
                                     return <Node key={colIndex} isStart={isStart} isEnd={isEnd} row={rowIndex} col={colIndex} />;
                                 })
                             }
