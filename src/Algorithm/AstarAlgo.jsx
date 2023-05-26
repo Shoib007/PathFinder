@@ -33,7 +33,7 @@ function AstarAlgo(startNode, endNode) {
         let neighbours = current.neighbours;
         for (let i = 0; i < neighbours.length; i++) {
             let neighbour = neighbours[i];
-            if (!closeSet.includes(neighbour)) {
+            if (!closeSet.includes(neighbour) && !neighbour.isWall) {
                 let tempG = current.g + 1;
                 let newPath = false;
                 if (openSet.includes(neighbour)) {

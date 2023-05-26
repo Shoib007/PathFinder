@@ -40,7 +40,9 @@ export default function PathFinder() {
         addingNeighbours(grid);
 
         const startNode = grid[NODE_START_ROW][NODE_START_COL];
+        startNode.isWall = false;
         const endNode = grid[NODE_END_ROW][NODE_END_COL];
+        startNode.isWall = false;
         let path = AstarAlgo(startNode, endNode);
         setPath(path.path);
         setVisitedNode(path.visitedNode);
@@ -104,7 +106,7 @@ export default function PathFinder() {
                             {
                                 row.map((col, colIndex) => {
                                     const { isStart, isEnd , isWall} = col;
-                                    return <Node key={colIndex} isStart={isStart} isEnd={isEnd} row={rowIndex} col={colIndex} />;
+                                    return <Node key={colIndex} isStart={isStart} isEnd={isEnd} row={rowIndex} col={colIndex} isWall={isWall} />;
                                 })
                             }
                         </div>
