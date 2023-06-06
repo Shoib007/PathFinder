@@ -3,8 +3,8 @@ import './PathFinder.css';
 import Node from './Node';
 import AstarAlgo from '../Algorithm/AstarAlgo';
 
-const cols = 14;
-const rows = 14;
+const cols = 20;
+const rows = 20;
 
 const NODE_START_ROW = 0;
 const NODE_END_ROW = rows - 1;
@@ -42,13 +42,23 @@ export default function PathFinder() {
         const startNode = grid[NODE_START_ROW][NODE_START_COL];
         startNode.isWall = false;
         const endNode = grid[NODE_END_ROW][NODE_END_COL];
-        startNode.isWall = false;
+        // startNode.isWall = false;
         let path = AstarAlgo(startNode, endNode);
         setPath(path.path);
         setVisitedNode(path.visitedNode);
-        console.log(path.visitedNode);
     }
 
+    const resetMatrix = () => {
+        initializerGrid();
+
+        let n = visitedNode.length;
+        for (let i = 0; i < n; i++) {
+            const node = visitedNode[i];
+            if((node.x !== 0 && node.y !== 0) || (node.x !== n-1 && node.y !== n-1)){
+                document.getElementById(`node-${node.x}-${node.y}`).className = "node";
+            }
+        }
+    }
 
 
     const createSpot = (grid) => {
@@ -83,7 +93,7 @@ export default function PathFinder() {
         this.neighbours = [];
         this.previous = undefined;
         this.isWall = false;
-        if (Math.random(1) < 0.2){
+        if (Math.random(1) < 0.2) {
             this.isWall = true
         }
         this.addNeighbours = function (grid) {
@@ -105,7 +115,7 @@ export default function PathFinder() {
                         <div key={rowIndex} className='rowWrapper'>
                             {
                                 row.map((col, colIndex) => {
-                                    const { isStart, isEnd , isWall} = col;
+                                    const { isStart, isEnd, isWall } = col;
                                     return <Node key={colIndex} isStart={isStart} isEnd={isEnd} row={rowIndex} col={colIndex} isWall={isWall} />;
                                 })
                             }
@@ -116,7 +126,6 @@ export default function PathFinder() {
         </div>
     )
 
-    console.log(path);
 
     const animatePath = (shortedPath) => {
         let n = shortedPath.length;
@@ -124,7 +133,7 @@ export default function PathFinder() {
             setTimeout(() => {
                 const node = shortedPath[i];
                 document.getElementById(`node-${node.x}-${node.y}`).className = "node node-shortest-path";
-            }, 10 * i);
+            }, 2 * i);
 
         }
     }
@@ -135,12 +144,12 @@ export default function PathFinder() {
             if (i === n) {
                 setTimeout(() => {
                     animatePath(path);
-                }, 20 * i);
+                }, 4 * i);
             } else {
                 setTimeout(() => {
                     const node = visitedNode[i];
                     document.getElementById(`node-${node.x}-${node.y}`).className = "node node-visited";
-                }, 20 * i);
+                }, 4 * i);
             }
 
         }
@@ -149,10 +158,12 @@ export default function PathFinder() {
 
     return (
         <div className='Wrapper'>
-            <h1> Path Finder Component</h1>
-            <button onClick={visualizePath}>Visualize</button>
+            <h1 className='algoName' style={{ textAlign: 'center' }}> A * Algorithm <span style={{ fontSize: '0.4rem' }}>(More Stuff are being add)</span> </h1>
+            <button id="algoButton" onClick={visualizePath}>Visualize</button>
             {gridWithNode}
-
+            <div className={`${path.error === 404 ? "pathNotFound" : ""}`}>
+                <button id="resetBtn" onClick={resetMatrix}>RESET</button>
+            </div>
         </div>
     );
 }

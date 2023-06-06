@@ -6,3 +6,38 @@
 .rowWrapper{
     display: flex;
 }
+
+.algoName {
+    color: rgb(135, 193, 2);
+    padding: 10px;
+}
+
+#algoButton{
+    margin: 10px 10px 10px 0px;
+    padding: 10px;
+    background-color: aqua;
+    color:blueviolet;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    transition: 0.5s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#algoButton:hover{
+    box-shadow: 0 0 5px 1px rgb(192, 65, 190);
+}
+
+.pathNotFound{
+    display: none;
+}
+
+#resetBtn{
+    padding:10px;
+    margin-top: 10px;
+    background-color: rgb(240, 42, 42);
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 10px;
+}

@@ -55,7 +55,7 @@ function AstarAlgo(startNode, endNode) {
 
         }
     }
-    return {path,visitedNode, error : "no path found"}
+    return {path,visitedNode, error : 404}
 }
 
 
