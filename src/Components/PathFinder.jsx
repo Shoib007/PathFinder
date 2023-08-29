@@ -3,7 +3,7 @@ import './PathFinder.css';
 import Node from './Node';
 import AstarAlgo from '../Algorithm/AstarAlgo';
 
-const cols = 20;
+const cols = 25;
 const rows = 20;
 
 const NODE_START_ROW = 0;
@@ -116,7 +116,7 @@ export default function PathFinder() {
                             {
                                 row.map((col, colIndex) => {
                                     const { isStart, isEnd, isWall } = col;
-                                    return <Node key={colIndex} isStart={isStart} isEnd={isEnd} row={rowIndex} col={colIndex} isWall={isWall} />;
+                                    return <Node key={colIndex} isStart={isStart} isEnd={isEnd} row={rowIndex} col={colIndex} isWall={isWall} spot={col} />;
                                 })
                             }
                         </div>

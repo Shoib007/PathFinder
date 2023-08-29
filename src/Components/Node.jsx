@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
 import "./Node.css";
 // let mouseDown = false;
-export default function Node({isStart, isEnd, row, col, isWall}) {
+export default function Node({isStart, isEnd, row, col,isWall}) {
   
   // const [isWall, setisWall] = useState(false);
   // const mousedown = () => {
